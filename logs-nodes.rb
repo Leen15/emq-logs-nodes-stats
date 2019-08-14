@@ -24,7 +24,7 @@ JSON.parse(json)['result'].map do |node|
   clients_json = JSON.parse(json)['result']['objects']
 
   printf(
-    "name: \"%s\" uptime: \"%s\" version: \"%s\" node_status: \"%s\" clients_count: \"%s\"\n",
+    "name=\"%s\" uptime=\"%s\" version=\"%s\" node_status=\"%s\" clients_count=\"%s\"\n",
     node['name'],
     node['uptime'],
     node['version'],
