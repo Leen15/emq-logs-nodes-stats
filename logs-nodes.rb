@@ -48,6 +48,30 @@ elsif MQTT_API_VERSION == 'v3'
       node['connections']
     )
   end
+elsif MQTT_API_VERSION == 'v4'
+  # get nodes
+  json = open(
+    "#{MQTT_SERVER}/api/v4/nodes",
+    http_basic_authentication: [MQTT_USERNAME, MQTT_PASSWORD]
+  ).read
+
+  JSON.parse(json)['data'].map do |node|
+    # get clients for this node
+    json = open(
+      "#{MQTT_SERVER}/api/v4/nodes/#{node['name']}/stats",
+      http_basic_authentication: [MQTT_USERNAME, MQTT_PASSWORD]
+    ).read
+    connections_count = JSON.parse(json)['data']['connections.count']
+
+    printf(
+      "name=\"%s\" uptime=\"%s\" version=\"%s\" node_status=\"%s\" clients_count=\"%s\"\n",
+      node['name'],
+      node['uptime'],
+      node['version'],
+      node['node_status'],
+      connections_count
+    )
+  end
 else
    puts "MQTT_API_VERSION unsupported."
 end

@@ -1,7 +1,7 @@
 # emq-logs-nodes-stats
 
  This script uses EMQ APIs to detect current status of cluster nodes and print them in console.  
- It supports API version v2 and v3.
+ It supports API version v2, v3 and v4.
 ## How to use it
 
  Simple run it as a docker container:
@@ -10,7 +10,7 @@
 -e MQTT_USERNAME=admin \
 -e MQTT_PASSWORD=password \
 -e MQTT_SERVER=http://mqtt.your.domain:18083 \
--e MQTT_API_VERSION=v3 \
+-e MQTT_API_VERSION=v4 \
  leen15/emq-logs-nodes-stats
 ```
 
