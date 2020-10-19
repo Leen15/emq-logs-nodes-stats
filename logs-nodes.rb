@@ -54,11 +54,11 @@ elsif MQTT_API_VERSION == 'v4'
     "#{MQTT_SERVER}/api/v4/nodes",
     http_basic_authentication: [MQTT_USERNAME, MQTT_PASSWORD]
   ).read
-
+  # puts json
   JSON.parse(json)['data'].map do |node|
     printf(
       "name=\"%s\" uptime=\"%s\" version=\"%s\" node_status=\"%s\" clients_count=\"%s\"\n",
-      node['name'],
+      node['node'],
       node['uptime'],
       node['version'],
       node['node_status'],
